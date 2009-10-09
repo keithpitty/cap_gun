@@ -26,8 +26,11 @@ In your Capistrano config file (usually deploy.rb):
       :authentication => :plain 
     }
 
-    # define the options for the actual emails that go out -- :recipients is the only required option
-    set :cap_gun_email_envelope, { :recipients => %w[joe@example.com, jane@example.com] }
+    # define the options for the actual emails that go out
+    set :cap_gun_email_envelope, { 
+      :recipients => %w[joe@example.com jane@example.com],
+      :from => "project.deployer@ example.com"
+    }
     
     # register email as a callback after restart
     after "deploy:restart", "cap_gun:email"
